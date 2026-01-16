@@ -1,0 +1,93 @@
+# Makefile for QuadGNSS-Sim C++ Interface
+# Part of the Multi-GNSS SDR Simulator project
+
+# Compiler and flags
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic -O2
+INCLUDES = -Iinclude
+DEFINES = -DM_PI=3.14159265358979323846
+
+# Directories
+SRC_DIR = src
+INC_DIR = include
+BIN_DIR = bin
+OBJ_DIR = obj
+
+# Source files
+INTERFACE_SOURCES = $(SRC_DIR)/quad_gnss_test.cpp
+DEMO_SOURCES = $(SRC_DIR)/demonstration.cpp
+TEST_SOURCES = $(SRC_DIR)/interface_test.cpp
+
+# Object files
+INTERFACE_OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(INTERFACE_SOURCES))
+DEMO_OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(DEMO_SOURCES))
+TEST_OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(TEST_SOURCES))
+
+# Executables
+DEMO_EXEC = $(BIN_DIR)/quad_gnss_demo
+TEST_EXEC = $(BIN_DIR)/quad_gnss_test
+
+# Default target
+all: directories $(DEMO_EXEC) $(TEST_EXEC)
+
+# Create necessary directories
+directories:
+	@mkdir -p $(OBJ_DIR) $(BIN_DIR)
+
+# Build demonstration program
+$(DEMO_EXEC): $(DEMO_OBJECTS) $(INTERFACE_OBJECTS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^
+
+# Build test program
+$(TEST_EXEC): $(TEST_OBJECTS) $(INTERFACE_OBJECTS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^
+
+# Compile source files
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -c $< -o $@
+
+# Clean build artifacts
+clean:
+	rm -rf $(OBJ_DIR) $(BIN_DIR)
+
+# Install dependencies (if needed)
+install-deps:
+	@echo "Checking for C++17 compatible compiler..."
+	@$(CXX) --version
+
+# Run tests
+test: $(TEST_EXEC)
+	@echo "Running QuadGNSS Interface Tests..."
+	@$(TEST_EXEC)
+
+# Run demonstration
+demo: $(DEMO_EXEC)
+	@echo "Running QuadGNSS Demonstration..."
+	@$(DEMO_EXEC)
+
+# Check code style (optional)
+lint:
+	@echo "Checking code style..."
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) -fsyntax-only $(SRC_DIR)/*.cpp
+
+# Show help
+help:
+	@echo "QuadGNSS-Sim C++ Interface Makefile"
+	@echo ""
+	@echo "Targets:"
+	@echo "  all          - Build all programs"
+	@echo "  clean        - Remove build artifacts"
+	@echo "  test         - Run interface tests"
+	@echo "  demo         - Run demonstration program"
+	@echo "  lint         - Check code style"
+	@echo "  install-deps - Check dependencies"
+	@echo "  help         - Show this help message"
+	@echo ""
+	@echo "Executables will be built in: $(BIN_DIR)"
+	@echo "Object files will be built in: $(OBJ_DIR)"
+
+# Declare phony targets
+.PHONY: all directories clean install-deps test demo lint help
+
+# Dependency tracking
+-include $(OBJ_DIR)/*.d

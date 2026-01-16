@@ -1,0 +1,25 @@
+﻿# Compiled Objects
+*.o
+*.obj
+obj/
+
+# Executables
+*.exe
+*.dll
+bin/
+
+# Specific binary files seen in your root
+quadgnss_sdr.exe
+test_*.exe
+debug_rinex.exe
+
+# Python Caches
+__pycache__/
+.ruff_cache/
+
+# Generated Data (Optional: Remove if you want to commit these)
+*.dat
+
+# OS Files
+.DS_Store
+Thumbs.db
