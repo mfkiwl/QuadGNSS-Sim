@@ -1,32 +1,32 @@
-# QuadGNSS-Sim - Multi-GNSS Broad-Spectrum Signal Generator
+﻿# QuadGNSS-Sim - Multi-GNSS Broad-Spectrum Signal Generator
 
-## 🛰️ Project Overview
+## ?儭?Project Overview
 
 QuadGNSS-Sim is a production-grade C++ implementation for generating multi-constellation GNSS signals with advanced signal processing capabilities. This system enables **authorized GNSS receiver stress testing** and **vulnerability assessment** through sophisticated broad-spectrum signal generation.
 
-## 🎯 Key Achievements
+## ? Key Achievements
 
-### 🛰️ **Complete Multi-GNSS Architecture**
-- **✅ GPS L1 C/A**: 1023-chip Gold code generation with authentic ICD-GPS-200 tap delays
-- **✅ Galileo E1 OS**: 4092-chip tiered codes with BOC(1,1) modulation
-- **✅ BeiDou B1I**: 2046-chip CSS codes with proper frequency planning
-- **✅ GLONASS L1**: 14-channel FDMA implementation with per-satellite mixing
+### ?儭?**Complete Multi-GNSS Architecture**
+- **??GPS L1 C/A**: 1023-chip Gold code generation with authentic ICD-GPS-200 tap delays
+- **??Galileo E1 OS**: 4092-chip tiered codes with BOC(1,1) modulation
+- **??BeiDou B1I**: 2046-chip CSS codes with proper frequency planning
+- **??GLONASS L1**: 14-channel FDMA implementation with per-satellite mixing
 
-### 📊 **Broad-Spectrum Generation**
-- **✅ 60 MSps Sampling**: Covers complete 44.3 MHz GNSS bandwidth
-- **✅ 1581.5 MHz Center**: Optimized frequency positioning for all constellations
-- **✅ Real-Time Processing**: Optimized for live SDR transmission
-- **✅ Multi-Hardware Support**: USRP, BladeRF 2.0, LimeSDR, HackRF compatibility
+### ?? **Broad-Spectrum Generation**
+- **??60 MSps Sampling**: Covers complete 44.3 MHz GNSS bandwidth
+- **??1581.5 MHz Center**: Optimized frequency positioning for all constellations
+- **??Real-Time Processing**: Optimized for live SDR transmission
+- **??Multi-Hardware Support**: USRP, BladeRF 2.0, LimeSDR, HackRF compatibility
 
-### 🔧 **Professional Implementation**
-- **✅ Modern C++17**: RAII, smart pointers, STL containers
-- **✅ Ephemeris Integration**: Real RINEX 2.11/3.0 parser with Keplerian parameters
-- **✅ Signal Authenticity**: Proper code structures, modulations, and timing
-- **✅ Performance Optimized**: SIMD-ready, multi-threaded, real-time capable
+### ? **Professional Implementation**
+- **??Modern C++17**: RAII, smart pointers, STL containers
+- **??Ephemeris Integration**: Real RINEX 2.11/3.0 parser with Keplerian parameters
+- **??Signal Authenticity**: Proper code structures, modulations, and timing
+- **??Performance Optimized**: SIMD-ready, multi-threaded, real-time capable
 
 ---
 
-## 🚀 Quick Start
+## ?? Quick Start
 
 ### Installation
 ```bash
@@ -62,7 +62,7 @@ make all
 
 ---
 
-## 📊 Technical Specifications
+## ?? Technical Specifications
 
 ### Frequency Planning
 | Constellation | Carrier (MHz) | Offset (MHz) | Modulation | Type |
@@ -79,22 +79,22 @@ make all
 ### Hardware Compatibility
 | SDR | Sample Rate | Cost | Multi-Constellation | Status |
 |---|---|---|---|---|
-| USRP B210 | 61.44 MSps | ~$1,200 | ✅ Optimal |
-| BladeRF 2.0 | 61.44 MSps | ~$400 | ✅ Optimal |
-| LimeSDR | 61.44 MSps | ~$300 | ✅ Optimal |
-| **HackRF One** | **20 MSps** | ~$300 | ❌ Single constellation only |
+| USRP B210 | 61.44 MSps | ~$1,200 | ??Optimal |
+| BladeRF 2.0 | 61.44 MSps | ~$400 | ??Optimal |
+| LimeSDR | 61.44 MSps | ~$300 | ??Optimal |
+| **HackRF One** | **20 MSps** | ~$300 | ??Single constellation only |
 
 ---
 
-## 🏗️ Architecture Overview
+## ??儭?Architecture Overview
 
 ### Class Hierarchy
 ```
 ISatelliteConstellation (Pure Virtual Interface)
-├── GpsL1Provider         // GPS L1 C/A (1023-chip Gold codes)
-├── GalileoE1Provider      // Galileo E1 OS (4092-chip tiered codes)
-├── BeidouB1Provider        // BeiDou B1I (2046-chip CSS codes)
-└── GlonassL1Provider       // GLONASS L1 (14-channel FDMA)
+??? GpsL1Provider         // GPS L1 C/A (1023-chip Gold codes)
+??? GalileoE1Provider      // Galileo E1 OS (4092-chip tiered codes)
+??? BeidouB1Provider        // BeiDou B1I (2046-chip CSS codes)
+??? GlonassL1Provider       // GLONASS L1 (14-channel FDMA)
 
 SignalOrchestrator         // Master controller with mix_all_signals()
 GlobalConfig               // Configuration management (60 MSps, 1582 MHz)
@@ -116,32 +116,32 @@ DigitalNCO                // 16K lookup table frequency synthesis
 
 ---
 
-## 📁 Project Structure
+## ?? Project Structure
 
 ### Source Organization
 ```
 src/
-├── main.cpp                    # Main simulation engine
-├── cdma_providers.cpp          # GPS/Galileo/BeiDou implementations
-├── glonass_provider.cpp         # GLONASS FDMA implementation  
-├── rinex_parser.cpp            # Ephemeris data parsing
-└── [Test files]               # Comprehensive test suite
+??? main.cpp                    # Main simulation engine
+??? cdma_providers.cpp          # GPS/Galileo/BeiDou implementations
+??? glonass_provider.cpp         # GLONASS FDMA implementation  
+??? rinex_parser.cpp            # Ephemeris data parsing
+??? [Test files]               # Comprehensive test suite
 
 include/
-├── quad_gnss_interface.h        # Main class interfaces
-├── rinex_parser.h              # RINEX parsing interface
-└── getopt.h                   # Command-line parsing
+??? quad_gnss_interface.h        # Main class interfaces
+??? rinex_parser.h              # RINEX parsing interface
+??? getopt.h                   # Command-line parsing
 
 docs/
-├── ARCHITECTURE.md             # System design documentation
-├── RINEX_FORMATS.md           # Ephemeris format specifications
-├── HARDWARE_GUIDE.md           # SDR compatibility guide
-└── DEPLOYMENT.md               # Field deployment instructions
+??? ARCHITECTURE.md             # System design documentation
+??? RINEX_FORMATS.md           # Ephemeris format specifications
+??? HARDWARE_GUIDE.md           # SDR compatibility guide
+??? DEPLOYMENT.md               # Field deployment instructions
 
 scripts/
-├── run_simulation.sh            # Multi-constellation deployment
-├── run_single_constellation.sh # Hardware-limited fallback
-└── [Utility scripts]           # Maintenance and monitoring
+??? run_simulation.sh            # Multi-constellation deployment
+??? run_single_constellation.sh # Hardware-limited fallback
+??? [Utility scripts]           # Maintenance and monitoring
 ```
 
 ### Build System
@@ -155,7 +155,7 @@ make install      # Install system-wide
 
 ---
 
-## 🧪 Testing & Validation
+## ?妒 Testing & Validation
 
 ### Automated Tests
 ```bash
@@ -182,15 +182,15 @@ valgrind --tool=massif ./quadgnss_sdr
 ```
 
 ### Validation Results
-- ✅ **All tests passing**: GPS, Galileo, BeiDou, GLONASS providers functional
-- ✅ **Signal generation**: Non-zero IQ samples for all constellations
-- ✅ **Buffer protection**: No int16_t overflow in multi-constellation mixing
-- ✅ **RINEX parsing**: Successfully loads standard ephemeris files
-- ✅ **Hardware integration**: Works with USRP, BladeRF, LimeSDR
+- ??**All tests passing**: GPS, Galileo, BeiDou, GLONASS providers functional
+- ??**Signal generation**: Non-zero IQ samples for all constellations
+- ??**Buffer protection**: No int16_t overflow in multi-constellation mixing
+- ??**RINEX parsing**: Successfully loads standard ephemeris files
+- ??**Hardware integration**: Works with USRP, BladeRF, LimeSDR
 
 ---
 
-## 🛡️ Data Handling
+## ?儭?Data Handling
 
 ### Ephemeris Support
 - **GPS**: RINEX 2.11 broadcast ephemeris (`.n` files)
@@ -226,7 +226,7 @@ struct EphemerisData {
 
 ---
 
-## 📡 Deployment
+## ? Deployment
 
 ### Production Ready Scripts
 
@@ -262,7 +262,7 @@ htop && iotop && nethogs
 
 ---
 
-## 📈 Performance Characteristics
+## ?? Performance Characteristics
 
 ### Benchmarks
 | Metric | Value |
@@ -275,15 +275,15 @@ htop && iotop && nethogs
 | Real-time | Yes (with proper SDR) |
 
 ### Optimization Features
-- ✅ **Lookup tables**: 16K NCO sine/cosine tables
-- ✅ **SIMD-ready**: Vectorized loops for 4-8x performance
-- ✅ **Multi-threading**: OpenMP parallelization support
-- 🔄 **AVX2 intrinsics**: Implementation ready (next phase)
-- 🔄 **GPU acceleration**: CUDA/OpenCL potential
+- ??**Lookup tables**: 16K NCO sine/cosine tables
+- ??**SIMD-ready**: Vectorized loops for 4-8x performance
+- ??**Multi-threading**: OpenMP parallelization support
+- ?? **AVX2 intrinsics**: Implementation ready (next phase)
+- ?? **GPU acceleration**: CUDA/OpenCL potential
 
 ---
 
-## 🔧 Development
+## ? Development
 
 ### Code Standards
 ```cpp
@@ -315,29 +315,29 @@ static constexpr double SAMPLE_RATE = 60e6;
 
 ---
 
-## 🛡️ Security & Compliance
+## ?儭?Security & Compliance
 
 ### Authorized Use Only
-- ✅ **Research Applications**: GNSS receiver development and testing
-- ✅ **Educational**: Learning GNSS signal processing concepts
-- ✅ **Security Research**: Authorized vulnerability assessment
-- ✅ **Professional**: Commercial GNSS receiver testing
+- ??**Research Applications**: GNSS receiver development and testing
+- ??**Educational**: Learning GNSS signal processing concepts
+- ??**Security Research**: Authorized vulnerability assessment
+- ??**Professional**: Commercial GNSS receiver testing
 
 ### Safety Features
-- ✅ **Power limits**: Configurable transmission power constraints
-- ✅ **Frequency adherence**: Proper band-limited operation
-- ✅ **License validation**: Built-in compliance checking
-- ✅ **Usage logging**: Activity monitoring and audit trails
+- ??**Power limits**: Configurable transmission power constraints
+- ??**Frequency adherence**: Proper band-limited operation
+- ??**License validation**: Built-in compliance checking
+- ??**Usage logging**: Activity monitoring and audit trails
 
 ### Regulatory Compliance
-- ⚠️ **Local Regulations**: Follow RF transmission laws
-- ⚠️ **Frequency Allocation**: Respect spectrum assignments
-- ⚠️ **Power Restrictions**: Adhere to EIRP limits
-- ⚠️ **Authorization**: Proper licensing required
+- ?? **Local Regulations**: Follow RF transmission laws
+- ?? **Frequency Allocation**: Respect spectrum assignments
+- ?? **Power Restrictions**: Adhere to EIRP limits
+- ?? **Authorization**: Proper licensing required
 
 ---
 
-## 🤝 Contributing
+## ?? Contributing
 
 ### Development Workflow
 1. Fork repository and create feature branch
@@ -354,7 +354,7 @@ static constexpr double SAMPLE_RATE = 60e6;
 
 ---
 
-## 📄 License
+## ?? License
 
 MIT License - see [LICENSE](LICENSE) file for details
 
@@ -366,7 +366,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ---
 
-## 📞 Support
+## ?? Support
 
 ### Bug Reports
 - Create issue on GitHub with detailed description
@@ -381,16 +381,16 @@ MIT License - see [LICENSE](LICENSE) file for details
 - Discuss implementation approach early
 
 ### Documentation
-- [Comprehensive Guide](DEPLOYMENT.md) - Field deployment instructions
-- [Hardware Compatibility](HARDWARE_GUIDE.md) - SDR setup guides
+- [Comprehensive Guide](docs/DEPLOYMENT.md) - Field deployment instructions
+- [Hardware Compatibility](docs/HARDWARE_GUIDE.md) - SDR setup guides
 - [API Reference](docs/API.md) - Complete function documentation
 - [Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues and solutions
 
 ---
 
-## 🏆 Project Status
+## ?? Project Status
 
-### ✅ **COMPLETE - PRODUCTION READY**
+### ??**COMPLETE - PRODUCTION READY**
 
 #### Delivered Capabilities
 1. **Full Multi-Constellation**: GPS + GLONASS + Galileo + BeiDou
@@ -411,7 +411,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ---
 
-## 🌟 Acknowledgments
+## ?? Acknowledgments
 
 This project builds upon decades of GNSS research and open-source development:
 
@@ -437,4 +437,4 @@ This project builds upon decades of GNSS research and open-source development:
 
 **QuadGNSS-Sim represents a complete, professional-grade implementation of multi-GNSS signal generation with enterprise-quality features, ready for immediate deployment in authorized GNSS receiver testing and research applications.**
 
-**Status**: ✅ **PROJECT COMPLETE - READY FOR PRODUCTION DEPLOYMENT**
+**Status**: ??**PROJECT COMPLETE - READY FOR PRODUCTION DEPLOYMENT**
