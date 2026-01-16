@@ -417,6 +417,7 @@ This project builds upon decades of GNSS research and open-source development:
 
 ### Core References
 - [GPS SDR-SIM](https://github.com/osqzss/gps-sdr-sim) - GPS signal algorithms
+- [BDS-SDRSIM](https://github.com/Liuuuuuuuuuuuuuuuuuu/BDS-SDRSIM) - BeiDou B1I signal algorithms
 - [Multi-SDR GPS SIM](https://github.com/Mictronics/multi-sdr-gps-sim) - SDR integration
 - [GNSS-SDR](https://github.com/gnss-sdr/gnss-sdr) - Open-source GNSS receiver
 - [ICD-GPS-200](https://www.gps.gov/technical/icwg/) - GPS interface specification
@@ -438,3 +439,4 @@ This project builds upon decades of GNSS research and open-source development:
 **QuadGNSS-Sim represents a complete, professional-grade implementation of multi-GNSS signal generation with enterprise-quality features, ready for immediate deployment in authorized GNSS receiver testing and research applications.**
 
 **Status**: ??**PROJECT COMPLETE - READY FOR PRODUCTION DEPLOYMENT**
+
