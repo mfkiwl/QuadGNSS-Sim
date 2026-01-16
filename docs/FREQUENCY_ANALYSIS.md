@@ -1,11 +1,11 @@
-# QuadGNSS-Sim Frequency Analysis & Transmission Guide
+﻿# QuadGNSS-Sim Frequency Analysis & Transmission Guide
 
-## 📡 Frequency Offsets & Bandwidth Analysis
+## ? Frequency Offsets & Bandwidth Analysis
 
 ### Center Frequency Selection
 - **Selected**: 1581.5 MHz
 - **Rationale**: Equidistant between lowest BDS (1561.098 MHz) and highest GLONASS (1605.375 MHz)
-- **Calculation**: (1561.098 + 1605.375) / 2 = 1581.2365 MHz ≈ 1581.5 MHz
+- **Calculation**: (1561.098 + 1605.375) / 2 = 1581.2365 MHz ??1581.5 MHz
 
 ### Exact Frequency Offsets
 
@@ -24,21 +24,21 @@
 - **Lowest Frequency**: 1561.098 MHz (BeiDou B1)
 - **Highest Frequency**: 1605.375 MHz (GLONASS k=+6)
 - **Total Span**: 44.277 MHz
-- **Required Sample Rate**: 2 × 22.1385 MHz = **44.28 MHz** (Nyquist minimum)
+- **Required Sample Rate**: 2 ? 22.1385 MHz = **44.28 MHz** (Nyquist minimum)
 
 #### Recommended Sample Rates
 | SDR Hardware | Max Sample Rate | Recommended | Status |
 |---|---|---|---|
-| **USRP B210** | 61.44 MHz | 61.44 MSps | ✅ **OPTIMAL** |
-| **USRP N210** | 100 MSps | 61.44 MSps | ✅ **OPTIMAL** |
-| **BladeRF 2.0** | 61.44 MSps | 61.44 MSps | ✅ **OPTIMAL** |
-| **LimeSDR Mini** | 61.44 MSps | 61.44 MSps | ✅ **OPTIMAL** |
-| **HackRF One** | 20 MSps | 20 MSps | ❌ **INADEQUATE** |
-| **HackRF One** | 20 MSps | 20 MSps | ❌ **INADEQUATE** |
+| **USRP B210** | 61.44 MHz | 61.44 MSps | ??**OPTIMAL** |
+| **USRP N210** | 100 MSps | 61.44 MSps | ??**OPTIMAL** |
+| **BladeRF 2.0** | 61.44 MSps | 61.44 MSps | ??**OPTIMAL** |
+| **LimeSDR Mini** | 61.44 MSps | 61.44 MSps | ??**OPTIMAL** |
+| **HackRF One** | 20 MSps | 20 MSps | ??**INADEQUATE** |
+| **HackRF One** | 20 MSps | 20 MSps | ??**INADEQUATE** |
 
 ### Hardware Compatibility Analysis
 
-#### ✅ **Recommended SDR Hardware**
+#### ??**Recommended SDR Hardware**
 
 **USRP Series (uhd_sink_cfile)**
 ```bash
@@ -67,7 +67,7 @@
 - **Advantage**: Good performance, open-source support
 - **Cost**: Medium ($300-$500)
 
-#### ❌ **Inadequate Hardware (Will Cause Issues)**
+#### ??**Inadequate Hardware (Will Cause Issues)**
 
 **HackRF One (hackrf_transfer)**
 ```bash
@@ -113,7 +113,7 @@ Even if hardware claims 20 MSps = 10 MHz bandwidth:
 
 #### **Correct Approach**
 ```
-Required: 2 × (1605.375 - 1561.098) = 88.554 MHz minimum
+Required: 2 ? (1605.375 - 1561.098) = 88.554 MHz minimum
 Recommended: 61.44 MSps (industry standard for GNSS)
 Optimal: 100 MSps (provides ample headroom for filtering)
 ```
@@ -180,10 +180,10 @@ echo "Transmission complete (with signal corruption!)"
 
 | Sample Rate | Bandwidth Covered | Signal Quality | Hardware Cost | Recommendation |
 |---|---|---|---|---|
-| **20 MSps** | 10 MHz | **Severely Corrupted** | Low | ❌ **DO NOT USE** |
-| **40 MSps** | 20 MHz | **Partially Corrupted** | Medium | ⚠️ **MINIMAL** |
-| **61.44 MSps** | 30.72 MHz | **Good** | Medium-High | ✅ **RECOMMENDED** |
-| **100 MSps** | 50 MHz | **Excellent** | High | ✅ **OPTIMAL** |
+| **20 MSps** | 10 MHz | **Severely Corrupted** | Low | ??**DO NOT USE** |
+| **40 MSps** | 20 MHz | **Partially Corrupted** | Medium | ?? **MINIMAL** |
+| **61.44 MSps** | 30.72 MHz | **Good** | Medium-High | ??**RECOMMENDED** |
+| **100 MSps** | 50 MHz | **Excellent** | High | ??**OPTIMAL** |
 
 ### Filtering Requirements
 
@@ -211,20 +211,20 @@ echo "Transmission complete (with signal corruption!)"
 
 ---
 
-## 📋 Summary
+## ?? Summary
 
-### ✅ **Critical Requirements**
+### ??**Critical Requirements**
 1. **Minimum Sample Rate**: 61.44 MSps (to cover 44.3 MHz span)
 2. **Recommended Hardware**: USRP, BladeRF 2.0, LimeSDR
 3. **Avoid**: HackRF One (20 MSps) - causes signal aliasing
 
-### ⚠️ **Signal Integrity Warning**
+### ?? **Signal Integrity Warning**
 Using hardware with insufficient sample rate will cause:
 - **Frequency Aliasing**: High GLONASS frequencies fold into wrong locations
 - **Filter Rolloff**: Analog filters cannot pass full bandwidth
 - **Signal Corruption**: Multi-constellation mixing will be degraded
 
-### 🚀 **Optimal Configuration**
+### ?? **Optimal Configuration**
 - **Sample Rate**: 61.44 MSps or higher
 - **Center Frequency**: 1581.5 MHz
 - **Hardware**: USRP or equivalent professional SDR

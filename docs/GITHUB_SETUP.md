@@ -1,6 +1,6 @@
-# GitHub Repository Setup Guide for QuadGNSS-Sim
+﻿# GitHub Repository Setup Guide for QuadGNSS-Sim
 
-## 🚀 Creating New Repository
+## ?? Creating New Repository
 
 ### 1. Repository Initialization
 ```bash
@@ -269,7 +269,7 @@ echo "Create release on GitHub:
 
 ---
 
-## 🌟 Repository Configuration
+## ?? Repository Configuration
 
 ### .gitignore Template
 ```gitignore
@@ -355,40 +355,40 @@ config.local
 
 ---
 
-## 📋 GitHub Repository Checklist
+## ?? GitHub Repository Checklist
 
-### ✅ Essential Files
+### ??Essential Files
 - [ ] `README.md` with complete documentation
 - [ ] `.gitignore` for build artifacts
 - [ ] `LICENSE` file (MIT recommended)
 - [ ] `CONTRIBUTING.md` with development guidelines
 - [ ] `CHANGELOG.md` for version history
 
-### ✅ Source Code
+### ??Source Code
 - [ ] All source files committed
 - [ ] Proper directory structure
 - [ ] No compiled binaries in repository
 - [ ] License headers in source files
 
-### ✅ Documentation
+### ??Documentation
 - [ ] Technical documentation in `docs/`
 - [ ] API reference (Doxygen optional)
 - [ ] User tutorials and examples
 - [ ] Hardware setup guides
 
-### ✅ CI/CD Setup
+### ??CI/CD Setup
 - [ ] GitHub Actions workflow
 - [ ] Multi-platform testing (Linux, macOS, Windows)
 - [ ] Automated testing on push/PR
 - [ ] Artifact upload for releases
 
-### ✅ Branch Strategy
+### ??Branch Strategy
 - [ ] `main` branch for stable releases
 - [ ] `develop` branch for integration
 - [ ] Feature branches for new work
 - [ ] Protection for main branch
 
-### ✅ Release Process
+### ??Release Process
 - [ ] Version tagging strategy
 - [ ] Release notes generation
 - [ ] Binary attachment in GitHub releases
@@ -396,7 +396,7 @@ config.local
 
 ---
 
-## 🚀 Post-Setup Actions
+## ?? Post-Setup Actions
 
 ### 1. Initial Verification
 ```bash
@@ -426,7 +426,7 @@ cd quadgnass-sim
 
 ---
 
-## 🎯 Repository URL
+## ? Repository URL
 
 Once set up, your repository will be available at:
 ```
@@ -443,7 +443,7 @@ https://github.com/YOUR_USERNAME/quadgnss-sim
 
 ---
 
-## 📞 Support and Contact
+## ?? Support and Contact
 
 ### Getting Help
 - **Documentation**: Check `docs/` directory and README

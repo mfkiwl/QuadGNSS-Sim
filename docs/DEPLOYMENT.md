@@ -1,43 +1,43 @@
-# QuadGNSS-Sim Deployment Scripts
+﻿# QuadGNSS-Sim Deployment Scripts
 
 ## Quick Start
 
 ### Multi-Constellation Mode (60 MSps Required)
 ```bash
 # Full broad-spectrum GNSS (44.3 MHz bandwidth)
-./run_simulation.sh <sdr_type> <lat> <lon> [hgt]
+scripts/run_simulation.sh <sdr_type> <lat> <lon> [hgt]
 
 # Examples:
-./run_simulation.sh usrp 40.714 -74.006 100     # USRP B210
-./run_simulation.sh bladerf 40.714 -74.006 100   # BladeRF 2.0
-./run_simulation.sh limewsdr 40.714 -74.006 100   # LimeSDR
-./run_simulation.sh hackrf 40.714 -74.006 100     # WILL FAIL (20 MSps max)
+scripts/run_simulation.sh usrp 40.714 -74.006 100     # USRP B210
+scripts/run_simulation.sh bladerf 40.714 -74.006 100   # BladeRF 2.0
+scripts/run_simulation.sh limewsdr 40.714 -74.006 100   # LimeSDR
+scripts/run_simulation.sh hackrf 40.714 -74.006 100     # WILL FAIL (20 MSps max)
 ```
 
 ### Single Constellation Mode (20 MSps Compatible)
 ```bash
 # For bandwidth-limited hardware (HackRF One, etc.)
-./run_single_constellation.sh <constellation> <sdr_type> <lat> <lon> [hgt]
+scripts/run_single_constellation.sh <constellation> <sdr_type> <lat> <lon> [hgt]
 
 # Examples:
-./run_single_constellation.sh gps hackrf 40.714 -74.006 100
-./run_single_constellation.sh galileo hackrf 40.714 -74.006 100
-./run_single_constellation.sh beidou hackrf 40.714 -74.006 100
+scripts/run_single_constellation.sh gps hackrf 40.714 -74.006 100
+scripts/run_single_constellation.sh galileo hackrf 40.714 -74.006 100
+scripts/run_single_constellation.sh beidou hackrf 40.714 -74.006 100
 ```
 
 ## Hardware Compatibility
 
-### ✅ Recommended Hardware (60 MSps+)
+### ??Recommended Hardware (60 MSps+)
 | SDR | Max Sample Rate | Cost | Status |
 |-----|-----------------|-------|---------|
-| USRP B210 | 61.44 MSps | ~$1,200 | ✅ Optimal |
-| BladeRF 2.0 | 61.44 MSps | ~$400 | ✅ Optimal |
-| LimeSDR | 61.44 MSps | ~$300 | ✅ Optimal |
+| USRP B210 | 61.44 MSps | ~$1,200 | ??Optimal |
+| BladeRF 2.0 | 61.44 MSps | ~$400 | ??Optimal |
+| LimeSDR | 61.44 MSps | ~$300 | ??Optimal |
 
-### ⚠️ Limited Hardware (20 MSps Max)
+### ?? Limited Hardware (20 MSps Max)
 | SDR | Max Sample Rate | Cost | Status |
 |-----|-----------------|-------|---------|
-| HackRF One | 20 MSps | ~$300 | ⚠️ Single constellation only |
+| HackRF One | 20 MSps | ~$300 | ?? Single constellation only |
 
 ## Setup Instructions
 
@@ -80,10 +80,10 @@ make all
 ### 4. Run Simulation
 ```bash
 # Full multi-constellation (requires 61.44+ MSps SDR)
-./run_simulation.sh usrp 40.714 -74.006 100
+scripts/run_simulation.sh usrp 40.714 -74.006 100
 
 # Single constellation (works on 20 MSps SDRs)
-./run_single_constellation.sh gps hackrf 40.714 -74.006 100
+scripts/run_single_constellation.sh gps hackrf 40.714 -74.006 100
 ```
 
 ## Signal Specifications
@@ -118,10 +118,10 @@ make all
 ### Real-time Priority
 ```bash
 # For low-latency applications
-sudo nice -n -10 ./run_simulation.sh usrp 40.714 -74.006 100
+sudo nice -n -10 scripts/run_simulation.sh usrp 40.714 -74.006 100
 
 # Or use chrt for real-time scheduling
-sudo chrt -f 99 ./run_simulation.sh usrp 40.714 -74.006 100
+sudo chrt -f 99 scripts/run_simulation.sh usrp 40.714 -74.006 100
 ```
 
 ## Troubleshooting
@@ -142,7 +142,7 @@ hackrf_list           # HackRF devices
 ### Buffer Underruns
 ```bash
 # Increase buffer size
-./run_simulation.sh usrp 40.714 -74.006 100 2>&1 | grep buffer
+scripts/run_simulation.sh usrp 40.714 -74.006 100 2>&1 | grep buffer
 
 # Reduce CPU load
 # Lower sample rate for single constellation mode
@@ -154,7 +154,7 @@ sudo cpupower frequency-set -g performance
 ### Signal Quality Issues
 ```bash
 # Check frequency plans
-./run_simulation.sh usrp 40.714 -74.006 100 2>&1 | grep -i frequency
+scripts/run_simulation.sh usrp 40.714 -74.006 100 2>&1 | grep -i frequency
 
 # Verify ephemeris freshness
 find data -name "*.n*" -mtime -7  # Files newer than 7 days
@@ -172,7 +172,7 @@ find data -name "*.n*" -mtime -7  # Files newer than 7 days
 # Override default frequencies
 export CENTER_FREQ_MHZ=1575.42    # GPS/Galileo
 export SAMPLE_RATE=30e6            # Custom rate
-./run_simulation.sh usrp 40.714 -74.006 100
+scripts/run_simulation.sh usrp 40.714 -74.006 100
 ```
 
 ### GNSS Constellation Selection
@@ -180,17 +180,17 @@ export SAMPLE_RATE=30e6            # Custom rate
 # Disable specific constellations
 export DISABLE_GLONASS=1          # Skip GLONASS
 export DISABLE_BEIDOU=1           # Skip BeiDou
-./run_simulation.sh usrp 40.714 -74.006 100
+scripts/run_simulation.sh usrp 40.714 -74.006 100
 ```
 
 ### Debug Mode
 ```bash
 # Enable verbose output
 export QUADGNSS_DEBUG=1
-./run_simulation.sh usrp 40.714 -74.006 100
+scripts/run_simulation.sh usrp 40.714 -74.006 100
 
 # Log to file
-./run_simulation.sh usrp 40.714 -74.006 100 2>&1 | tee simulation.log
+scripts/run_simulation.sh usrp 40.714 -74.006 100 2>&1 | tee simulation.log
 ```
 
 ## Performance Monitoring
@@ -213,7 +213,7 @@ sensors
 ### Signal Analysis
 ```bash
 # Capture signal for analysis
-./run_simulation.sh usrp 40.714 -74.006 100 | \
+scripts/run_simulation.sh usrp 40.714 -74.006 100 | \
 mbuffer -m 200M | \
 tee signal_capture.iq | \
 uhd_siggen ...

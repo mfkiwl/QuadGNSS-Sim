@@ -1,10 +1,10 @@
-# GLONASS FDMA Provider Implementation
+﻿# GLONASS FDMA Provider Implementation
 
 ## Overview
 
 The `GlonassL1Provider` implements the most complex part of the QuadGNSS-Sim system - FDMA (Frequency Division Multiple Access) for GLONASS L1 signals. Unlike CDMA constellations (GPS, Galileo, BeiDou), GLONASS uses different frequencies for each satellite.
 
-## 🎯 FDMA Technical Challenge
+## ? FDMA Technical Challenge
 
 ### Frequency Allocation
 GLONASS uses the formula: `1602 MHz + (k * 0.5625 MHz)` where `k` is the channel number (-7 to +6).
@@ -25,13 +25,13 @@ k = +1: 1602.5625 MHz
 ### CPU Intensity
 Each satellite requires:
 1. **Individual signal generation** at its base frequency
-2. **Frequency rotation**: `exp(j*2π*Δf*t)` for the specific offset
+2. **Frequency rotation**: `exp(j*2?*?f*t)` for the specific offset
 3. **Complex mixing** with appropriate phase continuity
 4. **Summation** with all other satellite signals
 
-**Total operations**: N_samples × N_satellites × complex_operations
+**Total operations**: N_samples ? N_satellites ? complex_operations
 
-## 🏗️ Architecture
+## ??儭?Architecture
 
 ### Core Classes
 
@@ -83,7 +83,7 @@ public:
 };
 ```
 
-## 🔧 FDMA Signal Generation Process
+## ? FDMA Signal Generation Process
 
 ### Core Algorithm in `generate_chunk()`
 
@@ -136,7 +136,7 @@ void avx2_sum_channels(std::complex<int16_t>* output, int sample_count) {
 }
 ```
 
-## 🚀 Performance Optimization
+## ?? Performance Optimization
 
 ### 1. **Lookup Tables**
 - **8K sine/cosine table** for complex exponential calculation
@@ -164,39 +164,39 @@ void avx2_sum_channels(std::complex<int16_t>* output, int sample_count) {
 - **SIMD directives** for vectorization
 - **Conditional execution** for small sample counts
 
-## 📊 Test Results Verification
+## ?? Test Results Verification
 
 ### FDMA Channel Configuration Confirmed
 ```
 Active Satellites: 8
-PRN  1 | Channel k= -7 | Freq: 1598.06 MHz | Δf: -3.9375 MHz
-PRN  2 | Channel k= -6 | Freq: 1598.62 MHz | Δf: -3.375 MHz
-PRN  3 | Channel k= -5 | Freq: 1599.19 MHz | Δf: -2.8125 MHz
-PRN  4 | Channel k= -4 | Freq: 1599.75 MHz | Δf:  -2.25 MHz
-PRN  5 | Channel k= -3 | Freq: 1600.31 MHz | Δf: -1.6875 MHz
-PRN  6 | Channel k= -2 | Freq: 1600.88 MHz | Δf: -1.125 MHz
-PRN  7 | Channel k= -1 | Freq: 1601.44 MHz | Δf: -0.5625 MHz
-PRN  8 | Channel k=  0 | Freq:    1602 MHz | Δf:      0 MHz
+PRN  1 | Channel k= -7 | Freq: 1598.06 MHz | ?f: -3.9375 MHz
+PRN  2 | Channel k= -6 | Freq: 1598.62 MHz | ?f: -3.375 MHz
+PRN  3 | Channel k= -5 | Freq: 1599.19 MHz | ?f: -2.8125 MHz
+PRN  4 | Channel k= -4 | Freq: 1599.75 MHz | ?f:  -2.25 MHz
+PRN  5 | Channel k= -3 | Freq: 1600.31 MHz | ?f: -1.6875 MHz
+PRN  6 | Channel k= -2 | Freq: 1600.88 MHz | ?f: -1.125 MHz
+PRN  7 | Channel k= -1 | Freq: 1601.44 MHz | ?f: -0.5625 MHz
+PRN  8 | Channel k=  0 | Freq:    1602 MHz | ?f:      0 MHz
 ```
 
 ### Signal Generation Performance
 ```
-✅ Generated 10000 IQ samples
-✅ FDMA multiplexing with 8 channels
-✅ Signal Statistics: Max I=5600, Q=5366
-✅ 98.16% non-zero samples (showing active mixing)
-✅ Complex I/Q values confirming frequency multiplexing
+??Generated 10000 IQ samples
+??FDMA multiplexing with 8 channels
+??Signal Statistics: Max I=5600, Q=5366
+??98.16% non-zero samples (showing active mixing)
+??Complex I/Q values confirming frequency multiplexing
 ```
 
 ### CPU Complexity Analysis
 ```
 - 8 individual frequency rotations
 - Complex exponential calculations per sample
-- 10,000 samples × 8 channels = 80,000 complex operations
+- 10,000 samples ? 8 channels = 80,000 complex operations
 - Critical summation loop ready for AVX2 optimization
 ```
 
-## 🔧 Integration Points
+## ? Integration Points
 
 ### Legacy GLONASS Code Integration
 ```cpp
@@ -227,18 +227,18 @@ void avx2_sum_channels(std::complex<int16_t>* output, int sample_count) {
 }
 ```
 
-## 🎯 Comparison with CDMA
+## ? Comparison with CDMA
 
 | Characteristic | CDMA (GPS/Galileo/BeiDou) | FDMA (GLONASS) |
 |---|---|---|
 | **Separation** | Code division (different PRN codes) | Frequency division (different frequencies) |
 | **Processing** | One frequency, multiple codes | Multiple frequencies, one code per sat |
-| **CPU Load** | O(N_samples × N_codes) | O(N_samples × N_frequencies × mixing) |
+| **CPU Load** | O(N_samples ? N_codes) | O(N_samples ? N_frequencies ? mixing) |
 | **Complexity** | Code correlation | Frequency rotation + summation |
 | **Advantages** | Simpler frequency planning | No code interference |
 | **Challenges** | Code cross-correlation | Multiple oscillators, frequency planning |
 
-## 🚀 Next Steps
+## ?? Next Steps
 
 ### Immediate Actions
 1. **Replace placeholder signal generation** with GLONASS-specific algorithms
@@ -252,17 +252,17 @@ void avx2_sum_channels(std::complex<int16_t>* output, int sample_count) {
 3. **GPU acceleration** potential for massive parallel processing
 4. **Memory pool optimization** to reduce allocation overhead
 
-## 🎉 SUCCESS: FDMA Implementation Complete
+## ?? SUCCESS: FDMA Implementation Complete
 
 The GLONASS FDMA Provider successfully implements the most complex part of the QuadGNSS-Sim system:
 
-- ✅ **Complete FDMA framework** with 14 channel management
-- ✅ **Per-satellite frequency rotation** with phase continuity
-- ✅ **High-performance summation** ready for AVX2 optimization
-- ✅ **Memory-efficient buffer management** for multi-channel signals
-- ✅ **Integration-ready** with clear placeholder locations
-- ✅ **Comprehensive testing** confirming correct FDMA operation
+- ??**Complete FDMA framework** with 14 channel management
+- ??**Per-satellite frequency rotation** with phase continuity
+- ??**High-performance summation** ready for AVX2 optimization
+- ??**Memory-efficient buffer management** for multi-channel signals
+- ??**Integration-ready** with clear placeholder locations
+- ??**Comprehensive testing** confirming correct FDMA operation
 
 The implementation provides a **robust foundation** for GLONASS signal generation with the CPU-intensive FDMA processing properly optimized for modern hardware.
 
-**Status**: ✅ **READY FOR LEGACY CODE INTEGRATION**
+**Status**: ??**READY FOR LEGACY CODE INTEGRATION**

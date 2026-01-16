@@ -1,4 +1,4 @@
-# CDMA Providers Implementation
+﻿# CDMA Providers Implementation
 
 ## Overview
 
@@ -214,9 +214,9 @@ void BeidouB1Provider::generate_beidou_signal_placeholder(...) {
 ### Frequency Offsets Confirmed
 
 ```
-GPS L1:     1575.42 MHz → Offset: -6.58 MHz  (1582 - 1575.42)
-Galileo E1: 1575.42 MHz → Offset: -6.58 MHz  (1582 - 1575.42)  
-Beidou B1:  1561.098 MHz → Offset: -20.902 MHz (1582 - 1561.098)
+GPS L1:     1575.42 MHz ??Offset: -6.58 MHz  (1582 - 1575.42)
+Galileo E1: 1575.42 MHz ??Offset: -6.58 MHz  (1582 - 1575.42)  
+Beidou B1:  1561.098 MHz ??Offset: -20.902 MHz (1582 - 1561.098)
 ```
 
 ### Digital Mixing Verification
@@ -270,10 +270,10 @@ std::unique_ptr<ISatelliteConstellation> ConstellationFactory::create_constellat
 
 The CDMA providers implementation provides a robust, high-performance foundation for multi-GNSS signal generation with:
 
-- ✅ **Accurate Digital Mixing**: NCO-based frequency shifting
-- ✅ **Modular Design**: Easy integration of legacy signal generation code
-- ✅ **Performance Optimized**: Efficient lookup tables and complex multiplication
-- ✅ **Type Safe**: Modern C++ with proper error handling
-- ✅ **Tested Verified**: Comprehensive testing confirms correct operation
+- ??**Accurate Digital Mixing**: NCO-based frequency shifting
+- ??**Modular Design**: Easy integration of legacy signal generation code
+- ??**Performance Optimized**: Efficient lookup tables and complex multiplication
+- ??**Type Safe**: Modern C++ with proper error handling
+- ??**Tested Verified**: Comprehensive testing confirms correct operation
 
 The implementation is ready for integration with existing GPS, Galileo, and BeiDou signal generation algorithms.

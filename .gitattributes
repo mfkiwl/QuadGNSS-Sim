@@ -1,0 +1,16 @@
+﻿# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout.
+*.c text
+*.h text
+*.cpp text
+*.md text
+
+# Declare files that will always have CRLF line endings on checkout.
+*.sln text eol=crlf
+
+# Force bash scripts to always use LF (Linux style), even on Windows.
+# This prevents "bad interpreter: /bin/bash^M" errors.
+*.sh text eol=lf

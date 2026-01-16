@@ -1,4 +1,4 @@
-# QuadGNSS-Sim C++ Class Architecture
+﻿# QuadGNSS-Sim C++ Class Architecture
 
 ## Overview
 
@@ -91,7 +91,7 @@ public:
 The system uses frequency offset positioning to multiplex all constellations:
 
 1. **GPS L1**: 1575.42 MHz (BPSK modulation)
-2. **GLONASS L1**: 1602.0 MHz + k×0.5625 MHz (FDMA)
+2. **GLONASS L1**: 1602.0 MHz + k?0.5625 MHz (FDMA)
 3. **Galileo E1**: 1575.42 MHz (BOC(1,1) modulation)
 4. **Beidou B1**: 1561.098 MHz (BPSK modulation)
 
@@ -156,15 +156,15 @@ orchestrator.mix_all_signals(signal_buffer.data(),
 
 ```
 ISatelliteConstellation (pure virtual interface)
-├── GPSConstellation      (1575.42 MHz, BPSK)
-├── GLONASSConstellation  (1602.0 MHz + k×0.5625 MHz, FDMA)
-├── GalileoConstellation  (1575.42 MHz, BOC(1,1))
-└── BeidouConstellation   (1561.098 MHz, BPSK)
+??? GPSConstellation      (1575.42 MHz, BPSK)
+??? GLONASSConstellation  (1602.0 MHz + k?0.5625 MHz, FDMA)
+??? GalileoConstellation  (1575.42 MHz, BOC(1,1))
+??? BeidouConstellation   (1561.098 MHz, BPSK)
 
 SignalOrchestrator
-├── std::vector<std::unique_ptr<ISatelliteConstellation>> constellations_
-├── GlobalConfig config_
-└── mix_all_signals() method
+??? std::vector<std::unique_ptr<ISatelliteConstellation>> constellations_
+??? GlobalConfig config_
+??? mix_all_signals() method
 ```
 
 ## Key Benefits
@@ -202,20 +202,20 @@ The architecture supports gradual migration from the existing C codebase:
 
 ```
 include/
-└── quad_gnss_interface.h    # Main interface header
+??? quad_gnss_interface.h    # Main interface header
 
 src/
-├── core/
-│   ├── satellite_constellation.cpp    # Base implementation
-│   └── signal_orchestrator.cpp        # Master controller
-├── constellations/
-│   ├── gps_constellation.cpp          # GPS L1 C/A implementation
-│   ├── glonass_constellation.cpp      # GLONASS L1 implementation
-│   ├── galileo_constellation.cpp      # Galileo E1 OS implementation
-│   └── beidou_constellation.cpp       # BeiDou B1I implementation
-└── demonstrations/
-    ├── demonstration.cpp              # Usage examples
-    └── interface_test.cpp             # Unit tests
+??? core/
+??  ??? satellite_constellation.cpp    # Base implementation
+??  ??? signal_orchestrator.cpp        # Master controller
+??? constellations/
+??  ??? gps_constellation.cpp          # GPS L1 C/A implementation
+??  ??? glonass_constellation.cpp      # GLONASS L1 implementation
+??  ??? galileo_constellation.cpp      # Galileo E1 OS implementation
+??  ??? beidou_constellation.cpp       # BeiDou B1I implementation
+??? demonstrations/
+    ??? demonstration.cpp              # Usage examples
+    ??? interface_test.cpp             # Unit tests
 ```
 
 ## Performance Specifications

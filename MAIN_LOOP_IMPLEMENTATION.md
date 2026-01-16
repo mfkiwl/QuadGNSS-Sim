@@ -1,6 +1,6 @@
-# QuadGNSS-Sim Main Loop & Mixer Implementation
+﻿# QuadGNSS-Sim Main Loop & Mixer Implementation
 
-## 🎯 Main Implementation Complete
+## ? Main Implementation Complete
 
 ### Files Created
 
@@ -8,7 +8,7 @@
 2. **`src/test_main_config.cpp`** - Configuration verification test
 3. **Main Implementation Documentation** - This file
 
-## 🛠️ Core Architecture
+## ??儭?Core Architecture
 
 ### BroadSpectrumConfig - Hardcoded Parameters
 
@@ -31,12 +31,12 @@ struct BroadSpectrumConfig {
 #### **Sample Rate: 60 MSps**
 - **Required**: High rate to cover ~45 MHz total bandwidth
 - **Range**: 1561-1602 MHz (41 MHz span)
-- **Nyquist**: 60 MSps > 2 × 20.5 MHz (max frequency offset)
-- **Over-sampling**: 60/20.5 = 2.9× oversampling ratio
+- **Nyquist**: 60 MSps > 2 ? 20.5 MHz (max frequency offset)
+- **Over-sampling**: 60/20.5 = 2.9? oversampling ratio
 
 #### **Center Frequency: 1581.5 MHz**
 - **Equidistant**: Between BDS 1561.1 MHz and GLONASS 1602 MHz
-- **Offset Range**: ±20.5 MHz (well within Nyquist limit)
+- **Offset Range**: 簣20.5 MHz (well within Nyquist limit)
 - **Calculation**: (1561.098 + 1602.0) / 2 = 1581.5 MHz
 
 #### **Signal Power Weighting**
@@ -44,12 +44,12 @@ struct BroadSpectrumConfig {
 Final_IQ = (GPS * 1.0) + (Galileo * 1.0) + (BeiDou * 1.0) + (GLONASS * 0.8)
 ```
 
-**GPS L1**: Strongest (-158.5 dBW typical) → Weight = 1.0x
-**Galileo E1**: Similar power to GPS → Weight = 1.0x
-**BeiDou B1**: Similar power to GPS → Weight = 1.0x
-**GLONASS L1**: Slightly attenuated for realism → Weight = 0.8x
+**GPS L1**: Strongest (-158.5 dBW typical) ??Weight = 1.0x
+**Galileo E1**: Similar power to GPS ??Weight = 1.0x
+**BeiDou B1**: Similar power to GPS ??Weight = 1.0x
+**GLONASS L1**: Slightly attenuated for realism ??Weight = 0.8x
 
-## 🔄 Main Loop Implementation
+## ?? Main Loop Implementation
 
 ### Core Signal Generation Loop
 
@@ -119,27 +119,27 @@ void output_signal_to_stdout(const std::complex<int16_t>* signal, int sample_cou
 }
 ```
 
-## 📊 Frequency Planning Verification
+## ?? Frequency Planning Verification
 
 ### Offset Calculations from 1581.5 MHz Center
 
 ```
-GPS L1:     1575.42 MHz → Δf = -6.08 MHz  (within range)
-GLONASS L1:  1602.00 MHz → Δf = +20.50 MHz (max offset)
-Galileo E1:  1575.42 MHz → Δf = -6.08 MHz  (within range)
-BeiDou B1:   1561.10 MHz → Δf = -20.40 MHz (max negative offset)
+GPS L1:     1575.42 MHz ???f = -6.08 MHz  (within range)
+GLONASS L1:  1602.00 MHz ???f = +20.50 MHz (max offset)
+Galileo E1:  1575.42 MHz ???f = -6.08 MHz  (within range)
+BeiDou B1:   1561.10 MHz ???f = -20.40 MHz (max negative offset)
 ```
 
 ### Bandwidth Coverage
 
 ```
 Total Bandwidth: 1561.098 - 1602.000 MHz = 40.902 MHz
-Required Sample Rate: 2 × 20.5 MHz = 41.0 MHz (Nyquist)
+Required Sample Rate: 2 ? 20.5 MHz = 41.0 MHz (Nyquist)
 Actual Sample Rate: 60 MSps
-Over-sampling Ratio: 60 / 41 = 1.46×
+Over-sampling Ratio: 60 / 41 = 1.46?
 ```
 
-## 🛰️ Ephemeris Auto-Loading
+## ?儭?Ephemeris Auto-Loading
 
 ### File Mapping
 ```cpp
@@ -167,18 +167,18 @@ for (auto& provider : providers_) {
 }
 ```
 
-## 📈 Performance Characteristics
+## ?? Performance Characteristics
 
 ### Chunk Processing
 - **Chunk Duration**: 10 ms (600,000 samples at 60 MSps)
-- **Memory per Chunk**: 600,000 × 4 bytes = 2.4 MB
+- **Memory per Chunk**: 600,000 ? 4 bytes = 2.4 MB
 - **Processing Time**: ~10 ms real-time requirement
 - **CPU Load**: High due to GLONASS FDMA processing
 
 ### Real-time Requirements
 - **Sample Rate**: 60 MSps = 60 million complex samples/second
 - **Chunk Generation**: 100 chunks/second for 10 ms chunks
-- **Signal Mixing**: 4 constellations × 600K samples = 2.4M operations/chunk
+- **Signal Mixing**: 4 constellations ? 600K samples = 2.4M operations/chunk
 - **Total Load**: ~240 million operations/second
 
 ### Optimization Strategies
@@ -187,7 +187,7 @@ for (auto& provider : providers_) {
 - **Multi-threading**: Per-constellation parallel processing
 - **Memory Pooling**: Reuse buffers to avoid allocations
 
-## 🖥️ User Interface
+## ?儭?User Interface
 
 ### Console Output
 ```
@@ -200,14 +200,7 @@ Configuration:
   Chunk Size: 600000 samples
 
 Signal Generation Started:
-┌─────────────────────────────────────────────┐
-│ Time(s) │ Satellites │ Signal Samples Generated │
-├─────────────────────────────────────────────┤
-│    0.010 │          19 │               600000 │
-│    1.010 │          19 │             6060000 │
-│    2.010 │          19 │            12060000 │
-└─────────────────────────────────────────────┘
-```
+??????????????????????????????????????????????????Time(s) ??Satellites ??Signal Samples Generated ????????????????????????????????????????????????????   0.010 ??         19 ??              600000 ????   1.010 ??         19 ??            6060000 ????   2.010 ??         19 ??           12060000 ??????????????????????????????????????????????????```
 
 ### Signal Output
 - **Format**: Interleaved signed 16-bit IQ samples
@@ -215,7 +208,7 @@ Signal Generation Started:
 - **Applications**: Can be piped to SDR hardware or saved to file
 - **Example**: `./quadgnss_sdr > signal.iq` or `./quadgnss_sdr | hackrf_transfer`
 
-## 🎯 Broad-Spectrum Spoofing Capabilities
+## ? Broad-Spectrum Spoofing Capabilities
 
 ### Signal Characteristics
 - **Multi-Constellation**: GPS + GLONASS + Galileo + BeiDou simultaneously
@@ -229,17 +222,17 @@ Signal Generation Started:
 - **Research**: Study multi-GNSS interference patterns
 - **Development**: Test GNSS receiver algorithms
 
-## ✅ Implementation Verification
+## ??Implementation Verification
 
 ### Test Results Confirmed
 ```
-✅ Configuration Parameters Verified
-✅ Frequency Offsets Calculated Correctly
-✅ Signal Power Weights Applied
-✅ Output Format Correct (Interleaved I16 Q16)
-✅ Ephemeris File Auto-loading Ready
-✅ Real-time Generation Loop Implemented
-✅ Graceful Shutdown Handling
+??Configuration Parameters Verified
+??Frequency Offsets Calculated Correctly
+??Signal Power Weights Applied
+??Output Format Correct (Interleaved I16 Q16)
+??Ephemeris File Auto-loading Ready
+??Real-time Generation Loop Implemented
+??Graceful Shutdown Handling
 ```
 
 ### Performance Metrics
@@ -249,20 +242,20 @@ Signal Generation Started:
 - **Output Format**: Interleaved signed 16-bit IQ to stdout
 - **Processing**: Real-time multi-constellation generation
 
-## 🚀 Final Status
+## ?? Final Status
 
-### ✅ **MAIN LOOP & MIXER IMPLEMENTATION COMPLETE**
+### ??**MAIN LOOP & MIXER IMPLEMENTATION COMPLETE**
 
 All requirements satisfied:
 
-1. ✅ **Hardcoded Configuration**: 60 MSps, 1581.5 MHz center frequency
-2. ✅ **Signal Power Weighting**: GPS=1.0, Galileo=1.0, BeiDou=1.0, GLONASS=0.8
-3. ✅ **Output Format**: Interleaved signed 16-bit IQ to stdout
-4. ✅ **Ephemeris Auto-loading**: 4 constellation files automatically loaded
-5. ✅ **Infinite Generation Loop**: Real-time broad-spectrum spoofing
-6. ✅ **Broad-Spectrum Coverage**: All four GNSS constellations simultaneously
+1. ??**Hardcoded Configuration**: 60 MSps, 1581.5 MHz center frequency
+2. ??**Signal Power Weighting**: GPS=1.0, Galileo=1.0, BeiDou=1.0, GLONASS=0.8
+3. ??**Output Format**: Interleaved signed 16-bit IQ to stdout
+4. ??**Ephemeris Auto-loading**: 4 constellation files automatically loaded
+5. ??**Infinite Generation Loop**: Real-time broad-spectrum spoofing
+6. ??**Broad-Spectrum Coverage**: All four GNSS constellations simultaneously
 
-### 🛰️ **QuadGNSS-Sim Ready for Operation**
+### ?儭?**QuadGNSS-Sim Ready for Operation**
 
 The main loop provides complete broad-spectrum GNSS signal generation with:
 
@@ -276,6 +269,6 @@ The main loop provides complete broad-spectrum GNSS signal generation with:
 
 ---
 
-## 🎉 **SUCCESS: Main Loop & Mixer Implementation Complete!**
+## ?? **SUCCESS: Main Loop & Mixer Implementation Complete!**
 
-**Status**: ✅ **READY FOR BROAD-SPECTRUM SPOOFING**
+**Status**: ??**READY FOR BROAD-SPECTRUM SPOOFING**

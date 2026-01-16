@@ -44,20 +44,20 @@ make all
 ### Multi-Constellation Mode (Recommended)
 ```bash
 # Full broad-spectrum (requires 61.44+ MSps SDR)
-./run_simulation.sh <sdr_type> <lat> <lon> [hgt]
+scripts/run_simulation.sh <sdr_type> <lat> <lon> [hgt]
 
 # Examples:
-./run_simulation.sh usrp 40.714 -74.006 100     # USRP B210
-./run_simulation.sh bladerf 40.714 -74.006 100   # BladeRF 2.0
+scripts/run_simulation.sh usrp 40.714 -74.006 100     # USRP B210
+scripts/run_simulation.sh bladerf 40.714 -74.006 100   # BladeRF 2.0
 ```
 
 ### Single Constellation Mode (HackRF Compatible)
 ```bash
 # For bandwidth-limited hardware (20 MSps max)
-./run_single_constellation.sh <constellation> <sdr_type> <lat> <lon> [hgt]
+scripts/run_single_constellation.sh <constellation> <sdr_type> <lat> <lon> [hgt]
 
 # Example:
-./run_single_constellation.sh gps hackrf 40.714 -74.006 100
+scripts/run_single_constellation.sh gps hackrf 40.714 -74.006 100
 ```
 
 ---
@@ -254,7 +254,7 @@ struct EphemerisData {
 ./quadgnss_sdr ... | mbuffer -m 200M | sdr_command
 
 # Real-time priority scheduling
-sudo nice -n -10 ./run_simulation.sh usrp 40.714 -74.006 100
+sudo nice -n -10 scripts/run_simulation.sh usrp 40.714 -74.006 100
 
 # System resource monitoring
 htop && iotop && nethogs
@@ -439,4 +439,5 @@ This project builds upon decades of GNSS research and open-source development:
 **QuadGNSS-Sim represents a complete, professional-grade implementation of multi-GNSS signal generation with enterprise-quality features, ready for immediate deployment in authorized GNSS receiver testing and research applications.**
 
 **Status**: ??**PROJECT COMPLETE - READY FOR PRODUCTION DEPLOYMENT**
+
 
