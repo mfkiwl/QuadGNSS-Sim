@@ -17,28 +17,36 @@ QuadGNSS-Sim is a production-grade C++ implementation for generating multi-const
 - **✅ Multi-Hardware Support**: USRP, BladeRF 2.0, LimeSDR, HackRF compatibility
 
 ## 🚀 Quick Start
+
 ### Installation
 ```bash
 # Clone repository
 git clone [https://github.com/Vanisherzd/QuadGNSS-Sim.git](https://github.com/Vanisherzd/QuadGNSS-Sim.git)
 cd QuadGNSS-Sim
+
 # Compile
 make all
+```
 Usage
 This tool automatically handles multi-constellation mixing. Please execute the scripts located in the scripts/ directory:
 
-Bash
-
-# Full broad-spectrum (requires 60MSps SDR like USRP/BladeRF)
+1. Full Broad-Spectrum Mode
+Requires 60MSps SDR like USRP, BladeRF, or LimeSDR.
+```bash
 cd scripts
 ./run_simulation.sh <sdr_type> <lat> <lon> [hgt]
-# Example: ./run_simulation.sh usrp 40.714 -74.006 100
-Bash
+```
+# Example:
+# ./run_simulation.sh usrp 40.714 -74.006 100
+2. HackRF Mode
+Single constellation only due to 20MHz bandwidth hardware limitation.
 
-# HackRF Mode (Single constellation only due to 20MHz bandwidth limit)
+```bash
 cd scripts
 ./run_single_constellation.sh gps hackrf 40.714 -74.006 100
-🏗️ Documentation
+```
+
+## 🏗️ Documentation
 All technical documentation is located in the docs/ directory:
 
 System Architecture
@@ -49,7 +57,7 @@ Frequency Analysis
 
 Hardware Guide
 
-📁 Project Structure
+## 📁 Project Structure
 src/: Core C++ source code (Signal generators, Mixer).
 
 include/: Header files and Interface definitions.
@@ -60,12 +68,12 @@ docs/: Technical documentation and archives.
 
 data/: Ephemeris and satellite data storage.
 
-🌟 Acknowledgments
+## 🌟 Acknowledgments
 This project builds upon decades of GNSS research:
 
 GPS SDR-SIM - GPS signal algorithms
 
 BDS-SDRSIM - BeiDou B1I signal algorithms
 
-📄 License
+## 📄 License
 MIT License - see LICENSE file for details.
